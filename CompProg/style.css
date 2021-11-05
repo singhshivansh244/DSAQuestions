@@ -1,0 +1,25 @@
+.container{
+	margin: 40px;
+	display: flex;
+	flex-direction: row;
+	height: 400px;
+	width: 400px;
+	background-color: aqua;
+	flex-wrap: wrap;
+	/* how items within a row are aligned */
+	justify-content: center;
+	/* it handles cols only */
+	align-items: baseline;
+	/* it handles the whole rows  */
+	align-content: center;
+
+}
+.item{
+	border: dotted maroon 2px;
+	margin: 10px;
+	height: 50px;
+	width: 50px;
+	background-color: lightseagreen;
+	font-size: 20pt;
+	color:white;
+}
