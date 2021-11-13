@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 using namespace chrono;
-#include "treeNode.h"
+// #include "treeNode.h"
 
 #define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 #define MOD 1000000007
@@ -95,123 +95,106 @@ using vmn = vector<ll>;
 #define vmmn(x,a,b) vector<vector<ll> > x(a,vmn(b))
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-void merge(vi &arr, int start, int mid, int end) {
-    vi temp(end - start + 1);
-    int i = start, k = 0, j = mid + 1;
-    while (i <= mid and j <= end) {
-        if (arr[i] <= arr[j]) temp[k++] = arr[i++];
-        else temp[k++] = arr[j++];
-    }
-    while (i <= mid) temp[k++] = arr[i++];
-    while (j <= end) temp[k++] = arr[j++];
-    fo(i, start, end + 1) arr[i] = temp[i - start];
-}
+// treeNode<int>* takeInput() {
+//     cout << "Enter root Data " << nline;
+//     queue<treeNode<int>*> q;
+//     int childData;
+//     cin >> childData;
+//     treeNode<int>* root = new treeNode<int>(childData);
+//     q.push(root);
+//     int n;
+//     while (!q.empty()) {
+//         treeNode<int>* front = q.front();
+//         q.pop();
+//         cout << "Enter number of children of " << front->data << nline;
+//         cin >> n;
+//         fo(i, 0, n) {
+//             cout << "Enter " << i << " data ";
+//             cin >> childData;
+//             treeNode<int>* child = new treeNode<int>(childData);
+//             q.push(child);
+//             cout << ' ';
+//             front->child.pb(child);
+//         }
+//         q.pop();
+//     }
+//     return root;
+// }
+// void display(treeNode<int>* root) {
+//     cout << root->data << " : ";
+//     for (int i = 0; i < root->child.size(); i++) {
+//         cout << root->child[i]->data << ' ';
+//     }
+//     cout << nline;
+//     for (int i = 0; i < root->child.size(); i++) display(root->child[i]);
+// }
 
-void mergeSort(vi &arr, int start, int end) {
-    if (start >= end) return;
-    int mid = (start + end) / 2;
-    mergeSort(arr, start, mid);
-    mergeSort(arr, mid + 1, end);
-    merge(arr, start, mid, end);
-}
+// int ans = 1, mx = 0;
+// int sumNode(treeNode<int>* root) {
+//     mx = max(ans, mx);
+//     ans++;
+//     fo(i, 0, root->child.size()) {
+//         sumNode(root->child[i]);
+//     }
+//     return mx;
+// }
 
-void heapify(vi &arr, int n, int i) {
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
-    if (l < n and arr[l] > arr[largest]) largest = l;
-    if (r < n and arr[r] > arr[largest]) largest = r;
-    if (largest != i) {
-        swap(arr[largest], arr[i]);
-        heapify(arr, n, largest);
-    }
-}
 
-void heapSort(vi &arr, int n) {
-    Rfo(i, n / 2 - 1, -1) heapify(arr, n, i);
-    Rfo(i, n - 1, 0) {
-        swap(arr[0], arr[i]);
-        heapify(arr, n, 0);
-    }
-}
+// void printLevelWise(treeNode<int>* root, int k) {
+//     if (k == 0) {
+//         cout << root->data << " ";
+//         return;
+//     }
+//     fo(i, 0, root->child.size()) printLevelWise(root->child[i], k - 1);
+//     return;
+// }
 
-struct Node {
-    int data;
-    Node* next;
-};
-Node* temp, *ptr, *start, *save;
-void createNode(int n) {
-    Node* ptr = new Node();
-    ptr->data = n;
-    if (start == nullptr) start = ptr;
-    else save->next = ptr;
-    ptr->next = nullptr;
-    save = ptr;
-}
-
-treeNode<int>* takeInput() {
-    cout << "Enter root Data " << nline;
-    queue<treeNode<int>*> q;
-    int childData;
-    cin >> childData;
-    treeNode<int>* root = new treeNode<int>(childData);
-    q.push(root);
-    int n;
-    while (!q.empty()) {
-        treeNode<int>* front = q.front();
-        q.pop();
-        cout << "Enter number of children of " << front->data << nline;
-        cin >> n;
-        fo(i, 0, n) {
-            cout << "Enter " << i << " data ";
-            cin >> childData;
-            treeNode<int>* child = new treeNode<int>(childData);
-            q.push(child);
-            cout << ' ';
-            front->child.pb(child);
-        }
-        q.pop();
-    }
-    return root;
-}
-void display(treeNode<int>* root) {
-    cout << root->data << " : ";
-    for (int i = 0; i < root->child.size(); i++) {
-        cout << root->child[i]->data << ' ';
-    }
-    cout << nline;
-    for (int i = 0; i < root->child.size(); i++) display(root->child[i]);
-}
-
-int ans = 1, mx = 0;
-int sumNode(treeNode<int>* root) {
-    mx = max(ans, mx);
-    ans++;
-    fo(i, 0, root->child.size()) {
-        sumNode(root->child[i]);
-    }
-    return mx;
-}
-/*
-         1
-    2    3    4
-       5   6
-*/
-
-void printLevelWise(treeNode<int>* root, int k) {
-    if (k == 0) {
-        cout << root->data << " ";
-        return;
-    }
-    fo(i, 0, root->child.size()) printLevelWise(root->child[i], k - 1);
-    return;
-}
+// int dp(vi a, int n) {
+//     vi dp(n);
+//     dp[0] = 0;
+//     int i = 0;
+//     while (i < n) {
+//         if (i + a[i] >= n - 1) {
+//             dp[n - 1] = dp[i] + 1;
+//             return dp[n - 1];
+//         }
+//         else dp[i + a[i]] = dp[i] + 1;
+//         __print(dp);
+//         i = i + a[i];
+//     }
+//     return dp[n - 1];
+// }
 
 void solve() {
-    treeNode<int>* root = takeInput();
+    /*treeNode<int>* root = takeInput();
     display(root);
-    // printLevelWise(root, 2);
+    printLevelWise(root, 2);
+    */
+    // this is the first problem of codechef
+    // int n; cin >> n;
+    // vi arr(n);
+    // for (int& x : arr) cin >> x;
+    // // __print(arr);
+    // cout << dp(arr, n);
+    // return;
+    // this is petrol diesel price
+    // int petrolPrice, dieselPrice, increasePetrol, increaseDiesel;
+    // cin >> petrolPrice >> dieselPrice >> increasePetrol >> increaseDiesel;
+    // int kMonth; cin >> kMonth;
+    // dieselPrice = increaseDiesel * kMonth; petrolPrice = increasePetrol * kMonth;
+    // debug(dieselPrice) debug(petrolPrice)
+    // if (dieselPrice == petrolPrice) {
+    //     cout << "SAME PRICE" << nline;
+    //     return;
+    // }
+    // cout << (dieselPrice < petrolPrice ? "DIESEL" : "PETROL") << nline;
+    // return;
+    // this is Equal coin problem
 
+    // int oneCoin, twoCoin;
+    // cin >> oneCoin >> twoCoin;
+    // cout << (oneCoin + 2 * twoCoin & 1 ? "nO" : "yEs") << nline;
+    // return;
 }
 
 int main() {
@@ -221,8 +204,7 @@ int main() {
 #endif
     fastio();
     int tc = 1;
-    // cin >> tc;
-    cout << "Hello Wrodl";
+    cin >> tc;
     while (tc--) solve();
     return 0;
 }

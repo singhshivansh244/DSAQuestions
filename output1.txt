@@ -1,10 +1,4 @@
-Hello WrodlEnter root Data 
-Enter number of children of 1
-Enter 0 data  Enter 1 data  Enter 2 data  Enter number of children of 3
-Enter 0 data  Enter 1 data  Enter number of children of 5
-1 : 2 3 4 
-2 : 
-3 : 5 6 
-5 : 
-6 : 
-4 : 
+yEs
+nO
+yEs
+nO
