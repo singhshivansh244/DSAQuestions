@@ -8,7 +8,7 @@ using namespace std;
 #pragma GCC target("fma,sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,tune=native")
 #pragma GCC optimize("unroll-loops")
 
-#define nline '\n'
+#define nl '\n'
 typedef long long ll;
 typedef unsigned long long ull;
 template <typename T>
@@ -23,7 +23,7 @@ void print__2D(vector<vector<T>> a)
         {
             cout << a[i][j] << " ";
         }
-        cout << "]" << nline;
+        cout << "]" << nl;
     }
 }
 long long gcd(long long int a, long long int b)
@@ -73,7 +73,7 @@ void _print(T x) { cout << x << "] "; }
 #define debug(x)                   \
     \cout << "[" << #x << "] = ["; \
     \_print(x);                    \
-    \cout << nline;
+    \cout << nl;
 #else
 #define debug(x)
 #endif
@@ -130,6 +130,23 @@ void createList(int data)
     {
         head = ptr;
         ptr->next = nullptr;
+    }
+    else
+    {
+        tmp = head;
+        head = ptr;
+        ptr->next = tmp;
+    }
+}
+
+void createListCircular(int data)
+{
+    node *ptr = new node();
+    ptr->data = data;
+    if (head == nullptr)
+    {
+        head = ptr;
+        ptr->next = head;
     }
     else
     {
