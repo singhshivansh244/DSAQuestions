@@ -14,7 +14,7 @@ typedef unsigned long long ull;
 template <typename T>
 #define yes cout << "Yes\n";
 #define no cout << "No\n";
-void print__2D(vector<vector<T> > a)
+void print__2D(vector<vector<T>> a)
 {
     for (int i = 0; i < a.size(); i++)
     {
@@ -114,3 +114,36 @@ ll max(ll a, ll b)
 }
 constexpr ll SZ = 2e5 + 7;
 #define vvi vector<vector<int>>
+
+struct node
+{
+    int data;
+    node *next;
+};
+node *start, *tmp, *head;
+
+void createList(int data)
+{
+    node *ptr = new node();
+    ptr->data = data;
+    if (head == nullptr)
+    {
+        head = ptr;
+        ptr->next = nullptr;
+    }
+    else
+    {
+        tmp = head;
+        head = ptr;
+        ptr->next = tmp;
+    }
+}
+
+void printList(node *head)
+{
+    while (head != nullptr)
+    {
+        cout << head->data << "->";
+        head = head->next;
+    }
+}
