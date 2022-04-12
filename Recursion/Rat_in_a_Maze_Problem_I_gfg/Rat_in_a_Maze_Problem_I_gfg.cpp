@@ -1,34 +1,21 @@
 #include "../../template.h"
-
 void helper(vvi &a, int i, int j, string temp, vector<string> &ans,
             vector<vector<bool>> vis) {
-  print__2D(vis);
-  cout << nl;
+  if (i < 0 and j < 0) return;
+  if (i < 0) return;
+  if (j < 0) return;
+  if (i >= a.size()) return;
+  if (j >= a[0].size()) return;
   if (a[i][j] == 0 or vis[i][j]) return;
   vis[i][j] = 1;
   if (i == a.size() - 1 and j == a[0].size() - 1) {
     ans.pb(temp);
     return;
   }
-  if (i == 0 and j == a[0].size() - 1) {
-    helper(a, i + 1, j, temp + 'D', ans, vis);
-    return;
-  }
-  if (i == 0) {
-    helper(a, i, j + 1, temp + 'R', ans, vis);
-    return;
-  }
-  if (i == a.size() - 1) {
-    helper(a, i, j + 1, temp + 'R', ans, vis);
-    return;
-  }
-  if (j == a[0].size() - 1) {
-    helper(a, i + 1, j, temp + 'D', ans, vis);
-    return;
-  }
   helper(a, i + 1, j, temp + 'D', ans, vis);
-  helper(a, i - 1, j, temp + 'R', ans, vis);
+  helper(a, i - 1, j, temp + 'U', ans, vis);
   helper(a, i, j + 1, temp + 'R', ans, vis);
+  helper(a, i, j - 1, temp + 'L', ans, vis);
 }
 
 void solve(vvi &a) {
@@ -41,6 +28,7 @@ void solve(vvi &a) {
 
 int main() {
   vvi a = {{1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}};
+  // vvi a = {{1, 0, 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}};
   // print__2D(a);
   solve(a);
 }
