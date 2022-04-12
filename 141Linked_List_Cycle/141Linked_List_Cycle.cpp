@@ -1,5 +1,6 @@
 #include "../template.h"
-
+// O(N) and O(1)
+// time and space resp
 void solve(node *head)
 {
     node *fast, *slow;

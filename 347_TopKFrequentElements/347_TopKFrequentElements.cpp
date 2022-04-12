@@ -1,5 +1,6 @@
 #include "template.h"
-
+// O(N) and O(1)
+// time and space resp
 void solve(vector<int> &a, int k)
 {
   map<int, int> mp;
