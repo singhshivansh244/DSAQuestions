@@ -9,25 +9,27 @@ long long solveMemo(vi &a, int m, int n, vvll &dp) {
   return dp[n][m];
 }
 
-void solveTabu(vi &a, int t, int n) {
+void solveTabu(vi &a, int n, int t) {
   vvll dp(n + 1, vll(t + 1, 0));
   fo(i, 0, t + 1) { dp[0][i] = (i % a[0] == 0); }
+  long mx = MIN;
   fo(i, 1, t + 1) {
     fo(j, 0, t + 1) {
       long notTaken = dp[i - 1][j];
       long taken = 0;
       if (a[i] <= j) taken = dp[i][j - a[i]];
       dp[i][j] = taken + notTaken;
+      mx = max(mx, dp[i][j]);
     }
   }
-  cout << dp[n - 1][t];
+  cout << mx;
 }
 
 int main() {
-  int n = 7, m = 8;
-  vi a = {1, 2, 3, 4, 7, 8, 9, 11};
+  int n = 1, m = 6;
+  vi a = {1, 6, 7, 9, 13, 14};
   vvll dp(n + 1, vll(m + 1, 0));
   cout << "Memoization Solution-> " << solveMemo(a, m, n, dp) << nl;
   cout << "Tabulation Solution -> ";
-  solveTabu(a, n, m);
+  solveTabu(a, m, n);
 }
