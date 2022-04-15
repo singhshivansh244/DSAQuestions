@@ -1,12 +1,13 @@
 #include "../../template.h"
 
-int solveMemo(int n, vi &a){
-    
+int solveMemo(int n, vi &a) {
+  if (n == 0) return 0;
+  return 1;
 }
 
-int main(){
-    int n = 4;
-    vi a = {1,5,11,5};
-    cout<<"Memoization Solution-> ";
-    cout<<solveMemo(n,a)<<nl;
+int main() {
+  vi a;
+  int n = 4;
+  cout << "Memoization Solution-> ";
+  cout << solveMemo(n, a) << nl;
 }
