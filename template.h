@@ -99,6 +99,7 @@ vector<bool> sieve(ll n) {
 ll max(ll a, ll b) { return (a < b ? b : a); }
 constexpr ll SZ = 2e5 + 7;
 #define vvi vector<vector<int>>
+#define vvll vector<vector<ll>>
 
 struct node {
   int data;
