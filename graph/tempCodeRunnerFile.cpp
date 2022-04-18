@@ -1,4 +1,4 @@
-vector<vector<bool>> vis(n + 1, vector<bool>(n + 1, 0));
-  dfs(edge, vis, 1);
-  cout << endl;
-  bfs(edge, vis, 1);
+if (!vis[s][a[i][1]]) {
+        vis[s][a[i][1]] = 1;
+        cnt += solve(a, a[i][1], d);
+      }
